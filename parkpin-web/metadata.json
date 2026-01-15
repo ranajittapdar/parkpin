@@ -1,0 +1,8 @@
+{
+  "name": "ParkPin",
+  "description": "A minimal location-based utility for remembering exactly where you parked your vehicle, even in unnamed or open areas.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ]
+}

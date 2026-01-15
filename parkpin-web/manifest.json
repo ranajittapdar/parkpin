@@ -1,0 +1,21 @@
+
+{
+  "name": "ParkPin",
+  "short_name": "ParkPin",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF9F2",
+  "theme_color": "#1D56CF",
+  "icons": [
+    {
+      "src": "https://api.dicebear.com/7.x/shapes/svg?seed=parkpin&backgroundColor=1d56cf",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "https://api.dicebear.com/7.x/shapes/svg?seed=parkpin&backgroundColor=1d56cf",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
