@@ -152,7 +152,7 @@ const App: React.FC = () => {
             <div className="space-y-4 text-center">
               <h2 className="text-2xl font-black text-gray-800 tracking-tight uppercase">Ready to Park?</h2>
               <p className="text-xs text-gray-400 font-bold max-w-[200px] mx-auto leading-relaxed uppercase tracking-widest">
-                Capture your location with high precision in one tap.
+                Pin your parking. Find it fast.
               </p>
             </div>
 
