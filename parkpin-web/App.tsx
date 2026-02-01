@@ -2,8 +2,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ParkingData, AppStatus } from './types';
 import MapPreview from './components/MapPreview';
-import { BannerAd, NativeAd } from './components/AdSpace';
-import { AdMob } from '@capacitor-community/admob';
 
 const STORAGE_KEY = 'parkpin_v2_storage';
 const EXPIRY_MS = 43200000; // 12 hours
@@ -17,15 +15,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const initializeApp = async () => {
-      // Ensure AdMob is ready if native
-      if ((window as any).Capacitor?.isNativePlatform()) {
-        try {
-          await AdMob.initialize();
-        } catch (e) {
-          console.warn('AdMob skip:', e);
-        }
-      }
-
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         try {
@@ -112,7 +101,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`max-w-md mx-auto min-h-screen flex flex-col bg-[#FDF9F2] pt-[var(--safe-area-inset-top)] ${status === AppStatus.PARKED ? 'pb-32' : 'pb-10'}`}>
+    <div className={`max-w-md mx-auto min-h-screen flex flex-col bg-[#FDF9F2] pt-[var(--safe-area-inset-top)] pb-10`}>
       
       {/* App Header */}
       <header className="px-6 py-6 flex items-center justify-between sticky top-0 z-30 bg-[#FDF9F2]/95 backdrop-blur-xl border-b border-gray-100/50">
@@ -224,9 +213,6 @@ const App: React.FC = () => {
                 )}
               </div>
 
-              {/* Native Ad Placement */}
-              <NativeAd />
-
               <button 
                 onClick={openNavigation} 
                 className="w-full h-[72px] bg-parkpin-primary text-white rounded-[1.8rem] font-black shadow-xl shadow-blue-100 flex items-center justify-center gap-4 active:scale-95 transition-all text-lg"
@@ -238,9 +224,6 @@ const App: React.FC = () => {
           </div>
         )}
       </main>
-
-      {/* Persistent Banner Ad */}
-      {status === AppStatus.PARKED && <BannerAd />}
     </div>
   );
 };
