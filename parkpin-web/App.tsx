@@ -89,6 +89,17 @@ const App: React.FC = () => {
 
   const openNavigation = () => {
     if (!data) return;
+
+    // Call Android bridge if available
+    if ((window as any).Android?.navigateBack) {
+      try {
+        (window as any).Android.navigateBack();
+      } catch (e) {
+        console.error("Android bridge error:", e);
+      }
+    }
+
+    // Continue with existing navigation logic
     const url = `https://www.google.com/maps/dir/?api=1&destination=${data.latitude},${data.longitude}`;
     window.open(url, '_blank');
   };
