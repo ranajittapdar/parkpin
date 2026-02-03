@@ -122,14 +122,25 @@ const App: React.FC = () => {
             Park<span className="text-[#da3a2c]">P</span>in
           </h1>
         </div>
-        {status === AppStatus.PARKED && (
-          <button 
-            onClick={handleClear} 
-            className="px-4 py-2 bg-red-50 text-red-600 text-[10px] font-black uppercase rounded-2xl border border-red-100 active:scale-95 transition-all shadow-sm"
+        <div className="flex items-center gap-2">
+          <a 
+            href="https://ko-fi.com/supportparkpindev" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-10 h-10 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center border border-amber-100 active:scale-90 transition-all shadow-sm"
+            title="Buy me a coffee"
           >
-            Clear
-          </button>
-        )}
+            <i className="fa-solid fa-mug-hot text-sm"></i>
+          </a>
+          {status === AppStatus.PARKED && (
+            <button 
+              onClick={handleClear} 
+              className="px-4 py-2 bg-red-50 text-red-600 text-[10px] font-black uppercase rounded-2xl border border-red-100 active:scale-95 transition-all shadow-sm"
+            >
+              Clear
+            </button>
+          )}
+        </div>
       </header>
 
       <main className="flex-1 px-6 flex flex-col">
