@@ -104,6 +104,28 @@ const App: React.FC = () => {
     window.open(url, '_blank');
   };
 
+  const handleShare = useCallback(async () => {
+    const shareText = "📍 Never lose your car again! Tired of wandering parking lots like a goldfish trying to remember things? 🐟 ParkPin saves your parking spot in one tap — download it free!";
+    const shareUrl = "https://play.google.com/store/apps/details?id=com.parkpin.parkingapp";
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'ParkPin',
+          text: shareText,
+          url: shareUrl,
+        });
+      } catch (err) {
+        if ((err as Error).name !== 'AbortError') {
+          console.error('Error sharing:', err);
+        }
+      }
+    } else {
+      const fullMessage = `${shareText} ${shareUrl}`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(fullMessage)}`, '_blank');
+    }
+  }, []);
+
   const formatTime = (ts: number) => {
     return new Intl.DateTimeFormat('default', {
       hour: 'numeric',
@@ -123,6 +145,13 @@ const App: React.FC = () => {
           </h1>
         </div>
         <div className="flex items-center gap-2">
+          <button 
+            onClick={handleShare}
+            className="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center border border-blue-100 active:scale-90 transition-all shadow-sm"
+            title="Share App"
+          >
+            <i className="fa-solid fa-share-nodes text-sm"></i>
+          </button>
           <a 
             href="https://ko-fi.com/supportparkpindev" 
             target="_blank" 
